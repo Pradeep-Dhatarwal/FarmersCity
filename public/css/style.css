@@ -2064,12 +2064,15 @@ select.g-select[option="selected"] {
     background: #fff;
     border-radius: 6px;
     padding: 35px 0 35px 12px;
-    padding: 15px 0 15px 12px;
+    padding: 10px 0 10px 6px;
     padding-left: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     border-radius: 0;
-    padding-top: 40px;
-    padding-bottom: 45px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    align-items: baseline;
+    box-shadow: 4px 4px 8px #00000012;
 }
 .why_choose_us .choose_us_item .icon {
   width:50px;
