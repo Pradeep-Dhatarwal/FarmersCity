@@ -1,0 +1,79 @@
+<%- include ../partials/header %> <%- include ../partials/menu %>
+
+
+<section class="breadcrumb-area" style="background-image:url(/images/background/2.jpg);">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs text-center">
+					<h1>New Blog Post</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- Account Page Content*********************** -->
+<div class="account_page">
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-offset-2 col-offset-md-2 col-offset-sm-2 col-lg-8 col-md-8 col-sm-6 col-xs-12 register_form">
+				<div class="theme-title">
+					<h2>Edit ("<%= post.heading %>")</h2>
+				</div>
+				<form method="post" action="/blog/<%=post.myslug %>?_method=PUT">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<div class="form_group">
+								<label>Heading</label>
+								<div class="input_group">
+									<input name="post[heading]" id="name"   value="<%= post.heading %>"  type="text" placeholder="Heading*">
+									<i class="fa fa-user" aria-hidden="true"></i>
+								</div> <!-- End of .input_group -->
+							</div> <!-- End of .form_group -->
+
+							<div class="form_group">
+								<label>Image Link</label>
+								<div class="input_group">
+									<input name="post[image]" id="mail"  value="<%=post.image %>"  type="text" placeholder="Image">
+									<i class="fa fa-link" aria-hidden="true"></i>
+								</div> <!-- End of .input_group -->
+							</div> <!-- End of .form_group -->
+							<div class="form_group">
+								<label>Seo Description</label>
+								<div class="input_group">
+									<input name="post[pageDescription]" id="mail"  type="text" placeholder="Image">
+									<i class="fa fa-link" aria-hidden="true"></i>
+								</div> <!-- End of .input_group -->
+							</div> <!-- End of .form_group -->
+
+							<div class="form_group">
+								<label>Slug</label>
+								<div class="input_group">
+									<input name="post[slug]" id="slug" type="text" value="<%=post.slug %>"  placeholder="Slug">
+									<i class="fa fa-link" aria-hidden="true"></i>
+								</div> <!-- End of .input_group -->
+							</div> <!-- End of .form_group -->
+						
+							<div class="form_group">
+								<label>Post content</label>
+								<div class="input_group">
+									<textarea name="post[description]" id="comment"  placeholder="Description" style="width: 100%;" rows="5" ><%= post.description %></textarea>
+									
+								</div> <!-- End of .input_group -->
+							</div> <!-- End of .form_group -->
+
+
+						</div>
+					</div> <!-- End of .row -->
+					<button class="color1_bg tran3s">Save Post</button>
+				</form>
+			</div> <!-- End of .register_form -->
+		</div> <!-- End of .row -->
+	</div> <!-- End of .container -->
+</div> <!-- End of .account_page -->
+
+<!-- Footer************************* -->
+<%- include ../partials/footer %>

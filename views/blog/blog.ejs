@@ -1,0 +1,85 @@
+<%- include ../partials/header %>
+<%- include ../partials/menu %>
+
+<section class="breadcrumb-area" style="background-image: url(/images/background/2.jpg);">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs text-center">
+					<h1>Blog</h1>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<% if (currentUser) { %>
+	<div class="breadcrumb-bottom-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-5 col-sm-5">
+					<ul>
+							<li><a href="blog/new" class="btn color1_bg tran3s">Add New Post +</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% } %>
+</section>
+
+<section class="news single_news_page style-2">
+	<div class="container">
+		<div class="row">
+
+			<% posts.docs.forEach(function(posts){ %>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="blogList_single_post clear_fix wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+					<div class="img_holder">
+						<img src="<%= posts.image %>" alt="News" class="img-responsive" />
+						<div class="opacity tran3s">
+							<div class="icon">
+								<span><a href="/blog/<%= posts.myslug %>" class="border_round">+</a></span>
+							</div>
+							<!-- End of .icon -->
+						</div>
+						<!-- End of .opacity -->
+					</div>
+					<!-- End of .img_holder -->
+					<div class="post">
+						<ul>
+							<li>
+								<a href="/blog/<%= posts.myslug %>" class="tran3s">
+									<i class="fa fa-user" aria-hidden="true"></i>
+									<%= posts.author.username %>
+								</a>
+							</li>
+							<li>
+								<a href="/blog/<%= posts.myslug %>" class="tran3s">
+									<i class="fa fa-clock-o" aria-hidden="true"></i>
+									<%= posts.date.toDateString() %>
+								</a>
+							</li>
+	
+						</ul>
+						<div class="text">
+							<h4><a href="/blog/<%= posts.myslug %>"><%= posts.heading %></a></h4>
+							<p><%- posts.description.substring(0, 150)+"..." %></p>
+							<div class="link">
+								<a href="/blog/<%= posts.myslug %>" class="tran3s">
+									READ MORE
+									<span class="fa fa-sort-desc"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!-- End of .post -->
+				</div>
+			</div>
+			<%});%>
+
+		</div>
+	</div>
+</section>
+
+<!-- Footer************************* -->
+<%- include ../partials/footer %>

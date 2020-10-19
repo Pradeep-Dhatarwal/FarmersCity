@@ -1,0 +1,57 @@
+
+module.exports = {
+
+  async Index(req, res, next) {
+    Post.find({}).sort({date:-1}).limit(3).exec( function (err, posts) {
+      if(err){
+      console.log(err);
+      res.send("not connected to database")
+      }else{
+        res.render('index' , { post:posts , page_name: "home" } );
+      }
+    });
+  },  
+  async gallery(req, res){
+    res.render("gallery/index", {page_name: "gallery"} );
+  },
+  async about(req, res){
+    res.render("about/about-us",  {page_name: "about"} );
+  },
+  async contact(req, res){
+    res.render("contact/contact" , {page_name: "contact"} ); 
+  },
+  async services(req, res){
+    res.render("services/index" , {page_name: "services"} ); 
+  },
+  async initiatives(req, res){
+    res.render("initiatives/index" , {page_name: "initiatives"} ); 
+  },
+  async Register(req, res) {
+    console.log(req.body.email);
+    console.log(req.body.username);
+    console.log(req.body.password);
+    if (req.body.email == null ||req.body.username == null  ||req.body.password == null ){
+      
+      res.flash("error","Incomplete fields please go back and try again")
+    } else {
+      User.find({ email : req.body.email },(err,user)=>{
+        if(err){
+        console.log(err); 
+        }else{
+          User.register(new User({ email: req.body.email , username: req.body.username }), req.body.password, (err, user) => {
+            if (err) {
+              req.flash("error","fuckerrr has an error");
+              return res.render("auth/register", { page_name : "register"});
+            } else {
+              passport.authenticate("local")(req, res, () => {
+                res.redirect("/blog")
+              });
+            }
+          })
+        }
+      });
+    
+    }
+  }
+
+}

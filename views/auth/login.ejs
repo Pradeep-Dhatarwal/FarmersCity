@@ -1,0 +1,64 @@
+<%- include ../partials/header %> <%- include ../partials/menu %>
+
+<section class="breadcrumb-area" style="background-image: url(images/background/2.jpg);">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="breadcrumbs text-center">
+					<h1>Login / Register</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+<!-- Account Page Content*********************** -->
+<div class="account_page">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 login_form">
+				<div class="theme-title">
+					<h2>Login Now</h2>
+				</div>
+				<form action="/login" method="post">
+					<div class="form_group">
+						<label>Username</label>
+						<div class="input_group">
+							<input type="text" name="username" placeholder="Please Enter your Username!" />
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</div>
+						<!-- End of .input_group -->
+					</div>
+					<!-- End of .form_group -->
+
+					<div class="form_group">
+						<label>Password</label>
+						<div class="input_group">
+							<input type="password"  name="password" placeholder="********" />
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</div>
+						<!-- End of .input_group -->
+					</div>
+					<!-- End of .form_group -->
+
+					<div class="clear_fix">
+						<!-- <div class="single_checkbox float_left">
+							<input type="checkbox" id="remember" />
+							<label for="remember">Remember me</label>
+						</div> -->
+						<!-- End .single_checkbox -->
+						<!-- <a href="#" class="float_right">Forgot Password?</a> -->
+					</div>
+					<button class="color1_bg tran3s">Login now</button>
+				</form>
+			</div>
+			<!-- End of .login_form -->
+		</div>
+		<!-- End of .row -->
+	</div>
+	<!-- End of .container -->
+</div>
+<!-- End of .account_page -->
+
+<%- include ../partials/footer %>
