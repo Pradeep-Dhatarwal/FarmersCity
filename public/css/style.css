@@ -3358,7 +3358,8 @@ footer .main_footer .footer_logo {
     padding-top: 18px;
 }
  .footer_logo img {
-    width: 100%;
+    width: 29%;
+    min-width: unset;
 }
 footer .main_footer .footer_logo a.tran3s i {
   margin-right: 6px;
