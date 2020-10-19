@@ -2229,6 +2229,7 @@ select.g-select[option="selected"] {
 
 .gallery .default-item .single-item .image-box img {
   display: inline-block;
+  width: 300px;
 }
 
 
