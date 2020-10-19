@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="breadcrumbs text-center">
-					<h1>New Article</h1>
+					<h1>New Blog Post</h1>
 				</div>
 			</div>
 		</div>
@@ -21,15 +21,15 @@
 
 			<div class="col-lg-offset-2 col-offset-md-2 col-offset-sm-2 col-lg-8 col-md-8 col-sm-6 col-xs-12 register_form">
 				<div class="theme-title">
-					<h2>Add New Post</h2>
+					<h2>Edit ("<%= news.heading %>")</h2>
 				</div>
-				<form method="post" action="/news">
+				<form method="post" action="/blog/<%=news.myslug %>?_method=PUT">
 					<div class="row">
 						<div class="col-sm-12 col-xs-12">
 							<div class="form_group">
 								<label>Heading</label>
 								<div class="input_group">
-									<input name="news[heading]" id="name" type="text" placeholder="Heading*">
+									<input name="news[heading]" id="name"   value="<%= news.heading %>"  type="text" placeholder="Heading*">
 									<i class="fa fa-user" aria-hidden="true"></i>
 								</div> <!-- End of .input_group -->
 							</div> <!-- End of .form_group -->
@@ -37,14 +37,14 @@
 							<div class="form_group">
 								<label>Image Link</label>
 								<div class="input_group">
-									<input name="news[image]" id="mail" type="text" placeholder="Image">
+									<input name="news[image]" id="mail"  value="<%=news.image %>"  type="text" placeholder="Image">
 									<i class="fa fa-link" aria-hidden="true"></i>
 								</div> <!-- End of .input_group -->
 							</div> <!-- End of .form_group -->
 							<div class="form_group">
 								<label>Seo Description</label>
 								<div class="input_group">
-									<input name="news[pageDescription]" id="mail" type="text" placeholder="Image">
+									<input name="news[pageDescription]" id="mail" value="<%=news.pageDescription %>" type="text" placeholder="Image">
 									<i class="fa fa-link" aria-hidden="true"></i>
 								</div> <!-- End of .input_group -->
 							</div> <!-- End of .form_group -->
@@ -52,7 +52,7 @@
 							<div class="form_group">
 								<label>Slug</label>
 								<div class="input_group">
-									<input name="news[slug]" id="slug" type="text" placeholder="Slug">
+									<input name="news[slug]" id="slug" type="text" value="<%=news.slug %>"  placeholder="Slug">
 									<i class="fa fa-link" aria-hidden="true"></i>
 								</div> <!-- End of .input_group -->
 							</div> <!-- End of .form_group -->
@@ -60,13 +60,15 @@
 							<div class="form_group">
 								<label>Post content</label>
 								<div class="input_group">
-									<textarea name="news[description]" id="comment" placeholder="Description" style="width: 100%;" rows="5" ></textarea>
+									<textarea name="news[description]" id="comment"  placeholder="Description" style="width: 100%;" rows="5" ><%= news.description %></textarea>
 									
 								</div> <!-- End of .input_group -->
 							</div> <!-- End of .form_group -->
+
+
 						</div>
 					</div> <!-- End of .row -->
-					<button class="color1_bg tran3s">Save Article</button>
+					<button class="color1_bg tran3s">Save Post</button>
 				</form>
 			</div> <!-- End of .register_form -->
 		</div> <!-- End of .row -->

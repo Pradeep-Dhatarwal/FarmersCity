@@ -39,7 +39,6 @@ router.put("/:slug", middleware.checkPostOwnership(), middleware.asyncErrorHandl
 //*=================================//
 router.delete(
 	"/:slug",
-	middleware.checkPostOwnership(),
 	middleware.isLoggedIn(),
 	middleware.asyncErrorHandler(postController.deletePost)
 );

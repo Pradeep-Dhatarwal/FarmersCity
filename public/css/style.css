@@ -2226,13 +2226,20 @@ select.g-select[option="selected"] {
 }
 
 .gallery .default-item .single-item .image-box {
-  text-align: center;  
-    line-height: 225px;
+  text-align: center;
+  line-height: 225px;
+  position: relative;
+  overflow: hidden;
+  height: 240px;
 }
 
 .gallery .default-item .single-item .image-box img {
   display: inline-block;
   width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 
@@ -2418,6 +2425,8 @@ select.g-select[option="selected"] {
 
 .news .blogList_single_post .img_holder {
   position: relative;
+  height: 246px;
+  overflow: hidden;
 }
 .news .blogList_single_post .img_holder:before {
     content: '';
@@ -6105,4 +6114,11 @@ footer .bottom_footer ul li a:hover,footer .bottom_footer p a,.about_us_main_con
     position: sticky;
     top: 0px;
     z-index: 999999;
+}
+.img_holder .img-responsive {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
 }

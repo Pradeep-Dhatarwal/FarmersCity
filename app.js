@@ -3,7 +3,6 @@ const express                         = require('express');
 const expressSession                  = require("express-session");
 const path                            = require('path');
 const cookieParser                    = require('cookie-parser');
-// const logger                          = require('morgan');
 const passport                        = require("passport");
 const methodOverride                  = require("method-override");
 const localStrategy                   = require("passport-local");
@@ -11,7 +10,13 @@ const passportLocalMongoose           = require("passport-local-mongoose");
 const mongoose                        = require("mongoose");
 const flash                           = require("connect-flash");
 const app                             = express();
-// require('dotenv').config();
+  
+if (process.env.NODE_ENV !== "production") {
+  const logger                          = require('morgan');
+  require('dotenv').config();
+  app.use(logger('dev'));
+}
+
 mongoose.connect( process.env.MONGO_URI , {useNewUrlParser: true , useUnifiedTopology: true },(err)=>{
   if(!err){
     console.log("Database connected successfully")
@@ -25,9 +30,9 @@ mongoose.connect( process.env.MONGO_URI , {useNewUrlParser: true , useUnifiedTop
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(cookieParser());
 app.use(flash())
@@ -52,6 +57,10 @@ app.use(expressSession({
     resave:false,
     saveUninitialized:false
   }));
+
+
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new localStrategy(User.authenticate()));
@@ -64,6 +73,8 @@ passport.deserializeUser(User.deserializeUser());
 // *=================================//
 app.use((req,res,next)=>{
   res.locals.currentUser = req.user;
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
   next();
 })
 

@@ -7,8 +7,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="breadcrumbs text-center">
-							<h1><%= post.heading %></h1>
-							 
+							<h1><%= news.heading %></h1>
 						</div>
 					</div>
 				</div>
@@ -19,8 +18,8 @@
 						<div class="row">
 							<div class="col-lg-8 col-md-5 col-sm-5">
 								<ul>
-										<li><a href="/blog/<%= post.myslug %>/edit" class="btn color1_bg tran3s">Edit Post +</a></li>
-										<li><form id="form" method="post" action="/blog/<%=post.myslug %>?_method=DELETE">
+										<li><a href="/news/<%= news.myslug %>/edit" class="btn color1_bg tran3s">Edit Post +</a></li>
+										<li><form id="form" method="post" action="/blog/<%=news.myslug %>?_method=DELETE">
 											<input type="submit" class="btn btn-danger btn-red btn-button" value="Delete Post">
 										</form></li>
 									</ul>
@@ -39,7 +38,7 @@
 							<div class="blogList_single_post clear_fix wow fadeInUp"
 								style="visibility: visible; animation-name: fadeInUp;">
 								<div class="img_holder">
-									<img src="<%= post.image %>" alt="News" class="img-responsive">
+									<img src="<%= news.image %>" alt="News" class="img-responsive">
 									<!-- <div class="opacity tran3s">
 										<div class="icon">
 											<span><a href="#" class="border_round">+</a></span>
@@ -49,18 +48,18 @@
 								<div class="post">
 
 									<div class="text">
-										<h4><a href="#"><%= post.heading %></a></h4>
+										<h4><a href="#"><%= news.heading %></a></h4>
 										<ul>
 											<li><a href="#" class="tran3s"><i class="fa fa-user" aria-hidden="true"></i>
-												<%= post.author.username %>
+												<%= news.author.username %>
 													</a></li>
 					
 											<li><a href="#" class="tran3s"><i class="fa fa-clock-o" aria-hidden="true"></i>
-												<%= post.date.toDateString() %></a></li>
+												<%= news.date.toDateString() %></a></li>
 										</ul>
 									
 										<div>
-											<%- post.description %>
+											<%- news.description %>
 										</div>
 
 									</div>

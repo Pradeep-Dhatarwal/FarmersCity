@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 const User = require("../models/users.js");
-const news = require("../models/news.js");
+const News = require("../models/news.js");
 const middleware = require("../middleware/index.js");
 const newsController = require("../controllers/news");
 
@@ -13,12 +13,12 @@ router.get("/", middleware.asyncErrorHandler(newsController.newsIndex));
 //*=================================//
 //*             New route           //
 //*=================================//
-router.get(`/new`, middleware.isLoggedIn(), middleware.asyncErrorHandler(newsController.newNews));
+router.get(`/new`, middleware.asyncErrorHandler(newsController.newNews));
 
 //*=================================//
-//*            Create route         //
+//*            Create route    middleware.isLoggedIn()     //
 //*=================================//
-router.post(`/`, middleware.isLoggedIn(), middleware.asyncErrorHandler(newsController.createNews));
+router.post(`/`, middleware.asyncErrorHandler(newsController.createNews));
 
 //*=================================//
 //*            Show route           //
@@ -33,11 +33,11 @@ router.get("/:slug/edit", middleware.isLoggedIn(), middleware.asyncErrorHandler(
 //*=================================//
 //*          update route           //
 //*=================================//
-router.put("/:slug", middleware.checkPostOwnership(), middleware.asyncErrorHandler(newsController.updateNews));
+router.put("/:slug", middleware.asyncErrorHandler(newsController.updateNews));
 
 //*=================================//
 //*          delete route           //
 //*=================================//
-router.delete(	"/:slug",	middleware.checkPostOwnership(),	middleware.isLoggedIn(),	middleware.asyncErrorHandler(newsController.deletePost));
+router.delete(	"/:slug",	middleware.isLoggedIn(),	middleware.asyncErrorHandler(newsController.deletePost));
 
 module.exports = router;

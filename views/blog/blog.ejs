@@ -64,6 +64,17 @@
 						<div class="text">
 							<h4><a href="/blog/<%= posts.myslug %>"><%= posts.heading %></a></h4>
 							<p><%- posts.description.substring(0, 150)+"..." %></p>
+							<%if(currentUser){%>
+								<div class="row">
+									<div class="col-sm-6"><a href="/blog/<%= posts.myslug %>/edit" class="btn btn-success btn-block tran3s">Edit Post +</a></div>
+									<div class="col-sm-6">	<form id="form" method="post" action="/blog/<%=posts.myslug %>?_method=DELETE">
+										<input type="submit" class="btn btn-danger btn-red btn-block btn-button" value="Delete Post">
+									</form></div>
+								</div>
+							
+							
+						
+						<%}%>
 							<div class="link">
 								<a href="/blog/<%= posts.myslug %>" class="tran3s">
 									READ MORE

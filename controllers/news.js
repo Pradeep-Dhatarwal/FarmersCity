@@ -1,5 +1,6 @@
 
 const News = require('../models/news');
+
 newsController = {
   async newsIndex(req, res, next) {
     let recentNews = await News.find({}).sort([['date', -1]]).limit(2).exec((err, data) => {
@@ -19,17 +20,19 @@ newsController = {
     res.render("news/news", { news, title: 'News Index', recent: recentNews , page_name: "news" });
   },
   async newNews(req, res){
-    res.render("news/new" );
+    res.render("news/new" ,{page_name: "blog"});
   },
   async createNews(req, res) {
+
     req.body.news.author = { id: req.user._id, username: req.user.username }
   
     if (req.body.news.image == "" || req.body.news.name == "" || req.body.news.description == "") {
+      req.flash("error","please fill all the fields correctly")
       res.render("news/new");
     } else {
       News.create(req.body.news, function (err, news) {
         if (err) {
-          res.send(alert(err));
+          console.log(err);
         } else {
           console.log("Data added Successfully");
           res.redirect(`/news`);

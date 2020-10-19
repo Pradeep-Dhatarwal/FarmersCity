@@ -1,5 +1,6 @@
 
 const Post = require('../models/posts');
+
 postController = {
   async postIndex(req, res, next) {
     let recentPosts = await Post.find({}).sort([['date', -1]]).limit(2).exec((err, data) => {
@@ -25,7 +26,7 @@ postController = {
     req.body.post.author = { id: req.user._id, username: req.user.username }
   
     if (req.body.post.image == "" || req.body.post.name == "" || req.body.post.description == "") {
-      res.render("blog/blog-create");
+      res.render("blog/new");
     } else {
       Post.create(req.body.post, function (err, posts) {
         if (err) {
