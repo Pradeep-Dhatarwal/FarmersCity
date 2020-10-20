@@ -9,6 +9,10 @@ const express = require('express')
       express().use(express.static('/public'))
 /* GET home page. */
 router.get('/', asyncErrorHandler(Index));
+router.get('/cron', (req,res)=>{
+  res.status("200");
+  res.json({ "job running": true })
+});
 
 router.get('/about-us', asyncErrorHandler(about));
 

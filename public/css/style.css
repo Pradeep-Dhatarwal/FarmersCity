@@ -84,9 +84,6 @@ This files contents are outlined below>>>>>
 /*----jquery ui css-------*/
 @import url('polyglot-language-switcher.css');
 @import url('jquery-ui.css');
-/*-------- responsive menu -----------*/
-@import url('menuzord.css');
-@import url('menuzord-animations.css');
 /*-------fancy box --------*/
 @import url('jquery.fancybox.css');
 /*-------- animated css ------*/
