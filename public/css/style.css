@@ -5272,8 +5272,8 @@ footer .bottom_footer h6 {
   background: #f9f9f9;
   border: 1px solid rgba(237,237,237,0.77);
   border-radius: 3px;
-  padding: 33px 33px 35px 35px;
-  margin-top:40px;
+  padding: 31px 33px 35px 35px;
+  margin-top: 6px;
 }
 .account_page form .input_group {
   height:40px;

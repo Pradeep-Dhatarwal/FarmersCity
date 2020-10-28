@@ -31,7 +31,7 @@
   content: "\e901";
 }
 .icon-delete:before {
-  content: "\e902";
+  /* content: "\e902"; */
 }
 .icon-message:before {
   content: "\e903";

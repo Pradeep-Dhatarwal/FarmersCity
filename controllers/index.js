@@ -31,22 +31,22 @@ module.exports = {
       }
     });
   },
-  async UpdateTopSelling(req, res){
+  async updateTopSelling(req, res){
     TopSelling.findOneAndUpdate({ _id: req.params.id }, req.body.topSelling, (err, data) => {
       if (err) {
         console.log(err);
       } else {
         console.log(data)
-        res.direct("/");
+        res.redirect("/");
       }
     })
   },
   async deleteTopSelling(req, res){
-    TopSelling.findOneAndDelete({_id:req.body.id}, function (err, posts) {
+    TopSelling.findOneAndDelete({_id:req.params.id}, function (err, posts) {
       if (err) {
         res.send({err});
       } else {
-        console.log("Data added Successfully");
+        console.log("Data deleted Successfully");
         res.redirect(`/`);
       }
     });

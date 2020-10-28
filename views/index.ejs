@@ -258,15 +258,15 @@
 
 		<div class="theme_title">
 			<h3>Top Selling Products 
-				<!-- <%# if (currentUser) { %> -->
+				<% if (currentUser) { %>
 					 <button type="button" class="btn btn-primary float_right" data-toggle="modal" data-target="#myModal">
 			<i class="fa fa-plus"></i>	Add New Product
 			</button>
-			<!-- <%# } %> -->
+			<% } %>
 			 </h3>
 		</div>
 
-		<!-- <%# if (currentUser) { %> -->
+		<% if (currentUser) { %>
 		 
 	
 			<div class="modal account_page" tabindex="-1" role="dialog" id="myModal">
@@ -281,7 +281,6 @@
 					<div class="modal-body">
 						
 							<form action="/top-selling" method="post">
-								
 								<div class="row">
 									<div class="col-sm-12 col-xs-12">
 										<div class="form_group">
@@ -296,14 +295,14 @@
 											<label>Image Link</label>
 											<div class="input_group">
 												<input name="topSelling[image]" id="mail" type="text" placeholder="Image">
-												<i class="fa fa-link" aria-hidden="true"></i>
+												<i class="fa fa-picture-o" aria-hidden="true"></i>
 											</div> <!-- End of .input_group -->
 										</div> <!-- End of .form_group -->
 										<div class="form_group">
 											<label>Price</label>
 											<div class="input_group">
 												<input name="topSelling[price]" id="mail" type="text" placeholder="Image">
-												<i class="fa fa-link" aria-hidden="true"></i>
+												<i class="fa fa-rupee" aria-hidden="true"></i>
 											</div> <!-- End of .input_group -->
 										</div> <!-- End of .form_group -->
 			
@@ -311,6 +310,13 @@
 											<label>Link</label>
 											<div class="input_group">
 												<input name="topSelling[link]" id="slug" type="text" placeholder="Slug">
+												<i class="fa fa-link" aria-hidden="true"></i>
+											</div> <!-- End of .input_group -->
+										</div> <!-- End of .form_group -->
+										<div class="form_group">
+											<label>Cart Link</label>
+											<div class="input_group">
+												<input name="topSelling[cartLink]" id="slug" type="text" placeholder="Cart Link">
 												<i class="fa fa-link" aria-hidden="true"></i>
 											</div> <!-- End of .input_group -->
 										</div> <!-- End of .form_group -->
@@ -328,40 +334,119 @@
 				</div>
 			</div>
 		</div>
-		<!-- <%# } %> -->
+		<% } %>
 		<div class="row filter-list clearfix">
 			<!--Default Item-->
+			<% topSelling.forEach(product => { %> 
 			<div class="col-md-4 col-sm-6 col-xs-12 mix mix_all default-item all beauty others"
 				style="display: inline-block;">
 				<div class="inner-box">
 					<div class="single-item center">
-						<figure class="image-box"><img src="images/shop/3.jpeg" alt=""></figure>
+						<figure class="image-box"><img src="<%= product.image %>" alt=""></figure>
 						<div class="overlay-box">
 							<div class="inner">
 								<div class="image-view">
 									<div class="icon-holder">
-										<a href="images/shop/3.jpeg" class="fancybox" data-fancybox-group="home-gallery"
-											title="Gardener Gallery" ><span class="icon-magnifier"></span></a>
-
-										</div>
+										<a href="<%= product.image %>" class="fancybox" data-fancybox-group="home-gallery"
+											title="Gardener Gallery" >
+											<span class="icon-magnifier"></span>
+										</a>
+									</div>
 								</div>
 								<div class="bottom-content">
-									<h4><a href="#">Rosewood Honey</a></h4>
-									<div class="price">₹12.99 <span class="prev-rate">₹14.99</span></div>
-									<div class="icon-box"><a href="shop-cart.html"><span class="icon-icon-32846"></span></a></div>
-									<div class="icon-edit"><a  href="/top-selling/edit" ><span class="icon-icon-32846"></span></a></div>
-									<div class="icon-delete">
-										<form action="/delete">
-											<button type="submit"><span class="icon-icon-32846"></span></button>
-										</form>
+									<h4><a href="<%= product.link %>"><%= product.name %></a></h4>
+									<div class="price">₹<%= product.price %>
+										<!-- <span class="prev-rate">₹14.99</span> -->
 									</div>
+									<div class="icon-box"><a href="<%= product.cartLink %>"><span class="icon-icon-32846"></span></a></div>
+
+	<% if (currentUser) { %>
+									<div class="icon-edit">
+										<a  href="#" data-toggle="modal" data-target="#editModal" >
+											<span class="fa fa-pencil bg-danger"></span>
+										</a>
+									</div>
+									
+
+										<div class="modal account_page" tabindex="-1" role="dialog" id="editModal">
+											<div class="modal-dialog" role="document">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title"> Edit <%= product.name %></h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+												<div class="modal-body">
+													
+														<form action="/top-selling/<%= product.id %>?_method=PUT" method="post">
+															
+															<div class="row">
+																<div class="col-sm-12 col-xs-12">
+																	<div class="form_group">
+																		<label>Name</label>
+																		<div class="input_group">
+																			<input name="topSelling[name]" value="<%= product.name %>" id="name" type="text" placeholder="Heading*">
+																			<i class="fa fa-user" aria-hidden="true"></i>
+																		</div> <!-- End of .input_group -->
+																	</div> <!-- End of .form_group -->
+										
+																	<div class="form_group">
+																		<label>Image Link</label>
+																		<div class="input_group">
+																			<input name="topSelling[image]" value="<%= product.image %>" id="mail" type="text" placeholder="Image">
+																			<i class="fa fa-link" aria-hidden="true"></i>
+																		</div> <!-- End of .input_group -->
+																	</div> <!-- End of .form_group -->
+																	<div class="form_group">
+																		<label>Price</label>
+																		<div class="input_group">
+																			<input name="topSelling[price]" value="<%= product.price %>" id="mail" type="text" placeholder="Image">
+																			<i class="fa fa-rupee" aria-hidden="true"></i>
+																		</div> <!-- End of .input_group -->
+																	</div> <!-- End of .form_group -->
+										
+																	<div class="form_group">
+																		<label>Link</label>
+																		<div class="input_group">
+																			<input name="topSelling[link]" value="<%= product.link %>" id="slug" type="text" placeholder="Slug">
+																			<i class="fa fa-link" aria-hidden="true"></i>
+																		</div> <!-- End of .input_group -->
+																	</div> <!-- End of .form_group -->
+																	<div class="form_group">
+																		<label>Cart Link</label>
+																		<div class="input_group">
+																			<input name="topSelling[cartLink]" value="<%= product.cartLink %>" id="slug" type="text" placeholder="Cart Link">
+																			<i class="fa fa-link" aria-hidden="true"></i>
+																		</div> <!-- End of .input_group -->
+																	</div> <!-- End of .form_group -->
+																
+																	<div class="form_group">
+																		<input type="Submit" class="btn btn-block btn-success" value="Edit Product">
+																	</div> <!-- End of .form_group -->
+																</div>
+															</div> <!-- End of .row -->
+
+														</form>
+													
+												</div>
+
+											</div>
+										</div>
+									</div>
+										<form  class="icon-delete" action="/top-selling/<%= product.id %>?_method=DELETE" method="post">
+											<button type="submit" class="btn"><span class="fa fa-trash-o"></span></button>
+										</form>
+	<% } %>
+
+
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
+		<%})%>
 
 
 			<!--Default Item-->

@@ -12,11 +12,11 @@ const router = express.Router({mergeParams:true}),
 
 router.get('/', asyncErrorHandler(Index));
 
-router.post('/top-selling/:id', asyncErrorHandler(topSelling));
+router.post('/top-selling', asyncErrorHandler(topSelling));
 
-router.put('/top-selling', asyncErrorHandler(updateTopSelling));
+router.put('/top-selling/:id', asyncErrorHandler(updateTopSelling));
 
-router.delete('/top-selling', asyncErrorHandler(deleteTopSelling));
+router.delete('/top-selling/:id', asyncErrorHandler(deleteTopSelling));
 
 router.get('/cron', (req,res)=>{
   res.status("200");
