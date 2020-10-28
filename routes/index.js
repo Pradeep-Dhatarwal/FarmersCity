@@ -1,14 +1,23 @@
 const { asyncErrorHandler }                                                                = require('../middleware/index.js');
-const {	Index, Register, about, gallery , contact , services, initiatives}                 = require('../controllers/index.js');
+const {	Index , Register , about , gallery , contact , services, initiatives , topSelling , updateTopSelling , deleteTopSelling }                 = require('../controllers/index.js');
 
-const express = require('express')
-      router = express.Router({mergeParams:true});  
+const express = require('express');
+const router = express.Router({mergeParams:true}),
       passport = require("passport"),
       Post = require("../models/posts.js"),
+      TopSelling = require("../models/topSelling.js"),
       User = require("../models/users.js");
       express().use(express.static('/public'))
 /* GET home page. */
+
 router.get('/', asyncErrorHandler(Index));
+
+router.post('/top-selling/:id', asyncErrorHandler(topSelling));
+
+router.put('/top-selling', asyncErrorHandler(updateTopSelling));
+
+router.delete('/top-selling', asyncErrorHandler(deleteTopSelling));
+
 router.get('/cron', (req,res)=>{
   res.status("200");
   res.json({ "job running": true })
@@ -23,6 +32,7 @@ router.get('/contact-us', asyncErrorHandler(contact));
 router.get('/services', asyncErrorHandler(services));
 
 router.get('/initiatives', asyncErrorHandler(initiatives));
+
 
 // *=================================//
 // *        Register Route           //

@@ -50,7 +50,7 @@
 						data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
 						data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;" data-start="2000" data-splitin="none"
 						data-splitout="none" data-responsive_offset="on" style="z-index: 6; white-space: nowrap;">
-						<h5 class="cp-title">Fruits ~ Vegetables ~ Foods ~ Cosmetics </h5>
+						<h5 class="cp-title">Fruits ~ Vegetables ~ Foods</h5>
 					</div>
 
 
@@ -62,7 +62,7 @@
 						data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
 						data-mask_in="x:0px;y:[100%];" data-mask_out="x:inherit;y:inherit;" data-start="2500" data-splitin="none"
 						data-splitout="none" data-responsive_offset="on" style="z-index: 6; white-space: nowrap;">
-						<h5 class="cp-title-2">We are providing highest quality Organics Products for You</h5>
+						<h5 class="cp-title-2">We are providing highest quality products for You</h5>
 					</div>
 
 
@@ -80,7 +80,7 @@
 
 					<img src="images/home/slide-2.jpg" alt="" data-bgposition="top center" class="rev-slidebg" data-no-retina>
 
-					<div class="tp-caption tp-resizeme" data-x="['center','center','center','center']"
+					<!-- <div class="tp-caption tp-resizeme" data-x="['center','center','center','center']"
 						data-hoffset="['80','80','80','80']" data-y="['middle','middle','middle','middle']"
 						data-voffset="['-160','-160','-160','-160']" data-width="none" data-height="none" data-transform_idle="o:1;"
 						data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;"
@@ -101,7 +101,7 @@
 								or avoids pleasure itself, because it is pleasure.</p>
 						</div>
 						<a href="#" class="thm-btn contuct-us">shop now</a>
-					</div>
+					</div> -->
 				</li>
 
 
@@ -117,7 +117,7 @@
 
 
 
-					<div class="tp-caption tp-resizeme" data-x="['center','center','center','center']"
+					<!-- <div class="tp-caption tp-resizeme" data-x="['center','center','center','center']"
 						data-hoffset="['0','0','35','0']" data-y="['middle','middle','middle','middle']"
 						data-voffset="['-120','-120','-120','-120']" data-width="none" data-height="none" data-transform_idle="o:1;"
 						data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:1.5;sY:1.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeInOut;"
@@ -126,7 +126,7 @@
 						data-start="1000" data-splitout="none" data-responsive_offset="on" data-elementdelay="0.05"
 						style="z-index: 5;">
 						<img src="images/home/3.png" alt="">
-					</div>
+					</div> -->
 
 
 
@@ -203,10 +203,8 @@
 			<div class="col-md-6 col-sm-12 col-xs-12">
 				<div class="choose_us_item tran3s">
 					<div class="icon p_color_bg border_round float_left"><span class="ficon icon-fruit-1"></span></div>
-
 					<div class="text float_left">
 						<h5 class="tran3s">100% Purity Gauranteed</h5>
-
 					</div> <!-- End of .text -->
 					<div class="clear_fix"></div>
 				</div> <!-- End of .choose_us_item -->
@@ -229,10 +227,8 @@
 			<div class="col-md-6 col-sm-12 col-xs-12">
 				<div class="choose_us_item tran3s">
 					<div class="icon p_color_bg border_round float_left"><span class="ficon icon-food-2"></span></div>
-
 					<div class="text float_left">
 						<h5 class="tran3s">Keeps Your Family Healthy</h5>
-
 					</div> <!-- End of .text -->
 					<div class="clear_fix"></div>
 				</div> <!-- End of .choose_us_item -->
@@ -261,8 +257,78 @@
 	<div class="container">
 
 		<div class="theme_title">
-			<h3>Top Selling Products</h3>
+			<h3>Top Selling Products 
+				<!-- <%# if (currentUser) { %> -->
+					 <button type="button" class="btn btn-primary float_right" data-toggle="modal" data-target="#myModal">
+			<i class="fa fa-plus"></i>	Add New Product
+			</button>
+			<!-- <%# } %> -->
+			 </h3>
 		</div>
+
+		<!-- <%# if (currentUser) { %> -->
+		 
+	
+			<div class="modal account_page" tabindex="-1" role="dialog" id="myModal">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title"> Add Top Selling Products</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					<div class="modal-body">
+						
+							<form action="/top-selling" method="post">
+								
+								<div class="row">
+									<div class="col-sm-12 col-xs-12">
+										<div class="form_group">
+											<label>Name</label>
+											<div class="input_group">
+												<input name="topSelling[name]" id="name" type="text" placeholder="Heading*">
+												<i class="fa fa-user" aria-hidden="true"></i>
+											</div> <!-- End of .input_group -->
+										</div> <!-- End of .form_group -->
+			
+										<div class="form_group">
+											<label>Image Link</label>
+											<div class="input_group">
+												<input name="topSelling[image]" id="mail" type="text" placeholder="Image">
+												<i class="fa fa-link" aria-hidden="true"></i>
+											</div> <!-- End of .input_group -->
+										</div> <!-- End of .form_group -->
+										<div class="form_group">
+											<label>Price</label>
+											<div class="input_group">
+												<input name="topSelling[price]" id="mail" type="text" placeholder="Image">
+												<i class="fa fa-link" aria-hidden="true"></i>
+											</div> <!-- End of .input_group -->
+										</div> <!-- End of .form_group -->
+			
+										<div class="form_group">
+											<label>Link</label>
+											<div class="input_group">
+												<input name="topSelling[link]" id="slug" type="text" placeholder="Slug">
+												<i class="fa fa-link" aria-hidden="true"></i>
+											</div> <!-- End of .input_group -->
+										</div> <!-- End of .form_group -->
+									
+										<div class="form_group">
+											<input type="Submit" class="btn btn-block btn-success" value="Add Product">
+										</div> <!-- End of .form_group -->
+									</div>
+								</div> <!-- End of .row -->
+
+							</form>
+						
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- <%# } %> -->
 		<div class="row filter-list clearfix">
 			<!--Default Item-->
 			<div class="col-md-4 col-sm-6 col-xs-12 mix mix_all default-item all beauty others"
@@ -275,19 +341,28 @@
 								<div class="image-view">
 									<div class="icon-holder">
 										<a href="images/shop/3.jpeg" class="fancybox" data-fancybox-group="home-gallery"
-											title="Gardener Gallery"><span class="icon-magnifier"></span></a>
-									</div>
+											title="Gardener Gallery" ><span class="icon-magnifier"></span></a>
+
+										</div>
 								</div>
 								<div class="bottom-content">
 									<h4><a href="#">Rosewood Honey</a></h4>
 									<div class="price">₹12.99 <span class="prev-rate">₹14.99</span></div>
 									<div class="icon-box"><a href="shop-cart.html"><span class="icon-icon-32846"></span></a></div>
+									<div class="icon-edit"><a  href="/top-selling/edit" ><span class="icon-icon-32846"></span></a></div>
+									<div class="icon-delete">
+										<form action="/delete">
+											<button type="submit"><span class="icon-icon-32846"></span></button>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
+
 
 			<!--Default Item-->
 			<div class="col-md-4 col-sm-6 col-xs-12 mix mix_all default-item all others" style="display: inline-block;">

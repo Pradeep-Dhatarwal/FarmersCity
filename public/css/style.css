@@ -2316,6 +2316,26 @@ select.g-select[option="selected"] {
   text-align: center;
   line-height: 45px;
 }
+.gallery .default-item .single-item .overlay-box .bottom-content .icon-edit {
+    position: absolute;
+    top: -120px;
+    left: 20px;
+    background: #fff;
+    height: 45px;
+    width: 45px;
+    text-align: center;
+    line-height: 45px;
+}
+.gallery .default-item .single-item .overlay-box .bottom-content .icon-delete {
+    position: absolute;
+    top: -120px;
+    right: 20px;
+    background: #fff;
+    height: 45px;
+    width: 45px;
+    text-align: center;
+    line-height: 45px;
+}
 .gallery .default-item .single-item .overlay-box .bottom-content .icon-box a {
   font-size: 20px;
 }
@@ -5339,8 +5359,8 @@ footer .bottom_footer h6 {
   margin-top: 28px;
 }
 .account_page {
-  margin-top: 90px;
-  margin-bottom: 90px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 
@@ -6110,7 +6130,7 @@ footer .bottom_footer ul li a:hover,footer .bottom_footer p a,.about_us_main_con
 .navbar-sticky{
     position: sticky;
     top: 0px;
-    z-index: 999999;
+    z-index: 1000;
 }
 .img_holder .img-responsive {
     position: absolute;

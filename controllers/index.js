@@ -1,16 +1,56 @@
+const TopSelling = require("../models/topSelling.js");
+const Post = require("../models/posts.js");
 
 module.exports = {
 
   async Index(req, res, next) {
-    Post.find({}).sort({date:-1}).limit(3).exec( function (err, posts) {
+    Post.find({}).sort({date:-1}).limit(3).exec( function (err, returnedposts) {
       if(err){
       console.log(err);
       res.send("not connected to database")
       }else{
-        res.render('index' , { post:posts , page_name: "home" } );
+        TopSelling.find({}).sort({date:-1}).limit(6).exec( function (err, top) {
+          if(err){
+          console.log(err);
+          res.send("not connected to database")
+          }else{
+            res.render('index' , { post: returnedposts , topSelling: top,  page_name: "home" } );
+          }
+        });
       }
     });
   },  
+  async topSelling(req, res){
+    TopSelling.create(req.body.
+      , function (err, posts) {
+      if (err) {
+        res.send({err});
+      } else {
+        console.log("Data added Successfully");
+        res.redirect(`/`);
+      }
+    });
+  },
+  async UpdateTopSelling(req, res){
+    TopSelling.findOneAndUpdate({ _id: req.params.id }, req.body.topSelling, (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(data)
+        res.direct("/");
+      }
+    })
+  },
+  async deleteTopSelling(req, res){
+    TopSelling.findOneAndDelete({_id:req.body.id}, function (err, posts) {
+      if (err) {
+        res.send({err});
+      } else {
+        console.log("Data added Successfully");
+        res.redirect(`/`);
+      }
+    });
+  },
   async gallery(req, res){
     res.render("gallery/index", {page_name: "gallery"} );
   },
