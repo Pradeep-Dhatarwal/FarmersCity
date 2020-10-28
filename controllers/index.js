@@ -21,7 +21,7 @@ module.exports = {
     });
   },  
   async topSelling(req, res){
-    TopSelling.create(req.body.
+    TopSelling.create(req.body.topSelling
       , function (err, posts) {
       if (err) {
         res.send({err});
