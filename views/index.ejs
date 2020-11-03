@@ -362,13 +362,13 @@
 
 	<% if (currentUser) { %>
 									<div class="icon-edit">
-										<a  href="#" data-toggle="modal" data-target="#editModal" >
+										<a  href="#" data-toggle="modal" data-target="#<%= product._id %>" >
 											<span class="fa fa-pencil bg-danger"></span>
 										</a>
 									</div>
 									
 
-										<div class="modal account_page" tabindex="-1" role="dialog" id="editModal">
+										<div class="modal account_page" tabindex="-1" role="dialog" id="<%= product._id %>">
 											<div class="modal-dialog" role="document">
 												<div class="modal-content">
 													<div class="modal-header">
