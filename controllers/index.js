@@ -1,5 +1,6 @@
 const TopSelling = require("../models/topSelling.js");
 const Post = require("../models/posts.js");
+const User = require("../models/users.js");
 
 module.exports = {
 
@@ -72,7 +73,7 @@ module.exports = {
     console.log(req.body.password);
     if (req.body.email == null ||req.body.username == null  ||req.body.password == null ){
       
-      res.flash("error","Incomplete fields please go back and try again")
+      // res.flash("error","Incomplete fields please go back and try again")
     } else {
       User.find({ email : req.body.email },(err,user)=>{
         if(err){
@@ -80,7 +81,7 @@ module.exports = {
         }else{
           User.register(new User({ email: req.body.email , username: req.body.username }), req.body.password, (err, user) => {
             if (err) {
-              req.flash("error","fuckerrr has an error");
+              // req.flash("error","fuckerrr has an error");
               return res.render("auth/register", { page_name : "register"});
             } else {
               passport.authenticate("local")(req, res, () => {
