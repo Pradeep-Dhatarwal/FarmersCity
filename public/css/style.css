@@ -3661,7 +3661,7 @@ footer .bottom_footer h6 {
   font-weight: 700;
   margin: 0 0 17px;
   text-transform: uppercase;
-  text-shadow: 2px 2px 7px black;
+  text-shadow: 2px 2px 7px #00000078;
 }
 
 .breadcrumbs h4 {
@@ -3670,9 +3670,8 @@ footer .bottom_footer h6 {
     font-weight: 400;
     text-transform: uppercase;
     font-family: 'Open Sans';
-    text-shadow: 2px 2px 7px black;
+    text-shadow: 2px 2px 7px #00000078;
 }
-
 
 /*
 * 19.= Breadcumb bottom area styles
@@ -3687,7 +3686,6 @@ footer .bottom_footer h6 {
     left: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
-
 
 .breadcrumb-bottom-area ul li {
     display: inline-block;
@@ -3708,9 +3706,6 @@ footer .bottom_footer h6 {
     float: right;
     color: #fff;
 }
-
-
-
 
 .gallery-single-area {
     padding-bottom: 90px;
