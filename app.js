@@ -8,6 +8,7 @@ const methodOverride                  = require("method-override");
 const localStrategy                   = require("passport-local");
 const passportLocalMongoose           = require("passport-local-mongoose");
 const mongoose                        = require("mongoose");
+const multer                          = require('multer');
 const flash                           = require("connect-flash");
 const app                             = express();
 
@@ -33,13 +34,20 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(cookieParser());
 app.use(flash())
 app.use(express.static(path.join(__dirname, 'public')));
-
+let storage = multer.diskStorage({   
+  destination: function(req, file, cb) { 
+    cb(null, 'uploads/images');    
+  }, 
+  filename: function (req, file, cb) { 
+    cb(null , file.originalname);   
+  }
+});
+const upload = multer({ storage:storage }).single("image");
 //*=================================//
 //*       Import Models             //
 //*=================================//
@@ -80,7 +88,14 @@ app.use((req,res,next)=>{
   next();
 })
 
-
+app.post("/image", (req, res) => {
+  upload(req, res, (err) => {
+   if(err) {
+     res.status(400).send("Something went wrong!");
+   }
+   res.send(req.file);
+ });
+});
 
 app.use('/', indexRouter);
 app.use('/blog', blogRouter);

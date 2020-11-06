@@ -1,3 +1,4 @@
+const path = require("path");
 const TopSelling = require("../models/topSelling.js");
 const Post = require("../models/posts.js");
 const User = require("../models/users.js");
@@ -22,7 +23,15 @@ module.exports = {
     });
   },  
   async topSelling(req, res){
-    TopSelling.create(req.body.topSelling
+    console.log(req.file);
+    let obj = { 
+      name: req.body.topSelling.name, 
+      price: req.body.topSelling.price, 
+      link: req.body.topSelling.link, 
+      cartLink: req.body.topSelling.cartLink, 
+      productImg:req.file.path
+  } 
+    TopSelling.create(obj
       , function (err, posts) {
       if (err) {
         res.send({err});
@@ -33,7 +42,14 @@ module.exports = {
     });
   },
   async updateTopSelling(req, res){
-    TopSelling.findOneAndUpdate({ _id: req.params.id }, req.body.topSelling, (err, data) => {
+    let obj = { 
+      name: req.body.topSelling.name, 
+      price: req.body.topSelling.price, 
+      link: req.body.topSelling.link, 
+      cartLink: req.body.topSelling.cartLink, 
+      productImg: req.file.path
+  } 
+    TopSelling.findOneAndUpdate({ _id: req.params.id }, obj, (err, data) => {
       if (err) {
         console.log(err);
       } else {

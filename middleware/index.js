@@ -34,5 +34,6 @@ middleware = {
         res.redirect("back")
       }
     }
+    
 }  
 module.exports = middleware

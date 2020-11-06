@@ -280,7 +280,7 @@
 						</div>
 					<div class="modal-body">
 						
-							<form action="/top-selling" method="post">
+							<form action="/top-selling" method="post" enctype="multipart/form-data">
 								<div class="row">
 									<div class="col-sm-12 col-xs-12">
 										<div class="form_group">
@@ -292,9 +292,9 @@
 										</div> <!-- End of .form_group -->
 			
 										<div class="form_group">
-											<label>Image Link</label>
+											<label>Image</label>
 											<div class="input_group">
-												<input name="topSelling[image]" id="mail" type="text" placeholder="Image">
+												<input name="topimage" id="mail" type="file" placeholder="Image">
 												<i class="fa fa-picture-o" aria-hidden="true"></i>
 											</div> <!-- End of .input_group -->
 										</div> <!-- End of .form_group -->
@@ -342,7 +342,7 @@
 				style="display: inline-block;">
 				<div class="inner-box">
 					<div class="single-item center">
-						<figure class="image-box"><img src="<%= product.image %>" alt=""></figure>
+						<figure class="image-box"><img src="<%= product.productImg %>" alt=""></figure>
 						<div class="overlay-box">
 							<div class="inner">
 								<div class="image-view">
@@ -394,7 +394,7 @@
 																	<div class="form_group">
 																		<label>Image Link</label>
 																		<div class="input_group">
-																			<input name="topSelling[image]" value="<%= product.image %>" id="mail" type="text" placeholder="Image">
+																			<input name="topimage" value="<%= product.productImg %>" id="mail" type="file" placeholder="Image">
 																			<i class="fa fa-link" aria-hidden="true"></i>
 																		</div> <!-- End of .input_group -->
 																	</div> <!-- End of .form_group -->

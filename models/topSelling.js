@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
 var topSellingSchema = new mongoose.Schema({
-  name: String,
-  image: String,
+  name: {type: String , unique: true},
   price:String,
   link: String,
-  cartLink:String
+  cartLink:String,
+  productImg:String
 });
 
 

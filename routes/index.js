@@ -7,14 +7,28 @@ const router = express.Router({mergeParams:true}),
       Post = require("../models/posts.js"),
       TopSelling = require("../models/topSelling.js"),
       User = require("../models/users.js");
-      express().use(express.static('/public'))
+      express().use(express.static('/public'));
+      var fs = require('fs'); 
+      var path = require('path'); 
+      var multer = require('multer'); 
+        
+      var storage = multer.diskStorage({ 
+          destination: (req, file, cb) => { 
+                cb(null, path.join(__dirname , '../uploads/images')) 
+          }, 
+          filename: (req, file, cb) => { 
+              cb(null, file.originalname) 
+          } 
+      }); 
+        
+      var upload = multer({ storage: storage }); 
 /* GET home page. */
 
 router.get('/', asyncErrorHandler(Index));
 
-router.post('/top-selling', asyncErrorHandler(topSelling));
+router.post('/top-selling', upload.single('topimage'),  asyncErrorHandler(topSelling));
 
-router.put('/top-selling/:id', asyncErrorHandler(updateTopSelling));
+router.put('/top-selling/:id',upload.single('topimage'), asyncErrorHandler(updateTopSelling));
 
 router.delete('/top-selling/:id', asyncErrorHandler(deleteTopSelling));
 
