@@ -33,7 +33,6 @@ middleware = {
       } else {
         res.redirect("back")
       }
-    }
-    
+  }
 }  
 module.exports = middleware
