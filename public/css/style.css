@@ -3670,6 +3670,7 @@ footer .bottom_footer h6 {
     font-weight: 400;
     text-transform: uppercase;
     font-family: 'Open Sans';
+    text-shadow: 2px 2px 7px black;
 }
 
 
