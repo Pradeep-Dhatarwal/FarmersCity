@@ -17,7 +17,7 @@ const router = express.Router({mergeParams:true}),
                 cb(null, path.join(__dirname , '../uploads/images')) 
           }, 
           filename: (req, file, cb) => { 
-              cb(null, file.originalname) 
+              cb(null, file.originalname) ;
           } 
       }); 
         
@@ -62,7 +62,7 @@ router.post("/register", asyncErrorHandler(Register));
 // *           Login Route           //
 // *=================================//
 router.get("/login", (req, res) => { 
-  res.render("auth/login" , {message: req.flash("error") , page_name : "login"})
+  res.render("auth/login" , {message: req.flash("error") , page_name : "login"});
 });
 
 router.post("/login",

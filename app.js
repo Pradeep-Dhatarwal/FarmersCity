@@ -22,10 +22,10 @@ if (process.env.NODE_ENV !== "production") {
 
 mongoose.connect( process.env.MONGO_URI , {useNewUrlParser: true , useUnifiedTopology: true },(err)=>{
   if(!err){
-    console.log("Database connected successfully")
-  } else (
-    console.log(err)
-  )
+    console.log("Database connected successfully");
+  } else {
+    console.log(err);
+}
 });
 
 
@@ -37,7 +37,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(cookieParser());
-app.use(flash())
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 let storage = multer.diskStorage({   
   destination: function(req, file, cb) { 
@@ -86,7 +86,7 @@ app.use((req,res,next)=>{
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
-})
+});
 
 app.post("/image", (req, res) => {
   upload(req, res, (err) => {
