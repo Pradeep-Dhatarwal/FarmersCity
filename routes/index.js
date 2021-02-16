@@ -1,27 +1,25 @@
 const { asyncErrorHandler }                                                                = require('../middleware/index.js');
-const {	Index , Register , about , gallery , contact , services, initiatives , topSelling , updateTopSelling , deleteTopSelling }                 = require('../controllers/index.js');
+const {	Index ,files, Register , about , gallery , contact , services, initiatives , topSelling , updateTopSelling , deleteTopSelling }                 = require('../controllers/index.js');
 
 const express = require('express');
 const router = express.Router({mergeParams:true}),
       passport = require("passport"),
       Post = require("../models/posts.js"),
       TopSelling = require("../models/topSelling.js"),
-      User = require("../models/users.js");
-      express().use(express.static('/public'));
-      var fs = require('fs'); 
-      var path = require('path'); 
-      var multer = require('multer'); 
-        
-      var storage = multer.diskStorage({ 
-          destination: (req, file, cb) => { 
-                cb(null, path.join(__dirname , '../uploads/images')) 
-          }, 
-          filename: (req, file, cb) => { 
-              cb(null, file.originalname) ;
-          } 
-      }); 
-        
-      var upload = multer({ storage: storage }); 
+      User = require("../models/users.js"),
+      fs = require('fs'), 
+      path = require('path'), 
+      multer = require('multer'), 
+      storage = multer.diskStorage({ destination: (req, file, cb) => { 
+          cb(null,  'public/uploads') ;
+        }, 
+        filename: (req, file, cb) => { 
+          cb(null, file.originalname);
+        } 
+      }),
+      upload = multer({ storage: storage }); 
+
+      // express().use(express.static('/public'));
 /* GET home page. */
 
 router.get('/', asyncErrorHandler(Index));
@@ -34,7 +32,7 @@ router.delete('/top-selling/:id', asyncErrorHandler(deleteTopSelling));
 
 router.get('/cron', (req,res)=>{
   res.status("200");
-  res.json({ "job running": true })
+  res.json({ "job running": true });
 });
 
 router.get('/about-us', asyncErrorHandler(about));
@@ -52,12 +50,17 @@ router.get('/initiatives', asyncErrorHandler(initiatives));
 // *        Register Route           //
 // *=================================//
 router.get("/register", (req, res) => {
-  res.render("auth/register", {page_name : "register"})
+  res.render("auth/register", {page_name : "register"});
 });
 
 router.post("/register", asyncErrorHandler(Register));
-
-
+// *=================================//
+// *          files Route            //
+// *=================================//
+router.get('/files', asyncErrorHandler(files));
+router.post('/upload',upload.single("file") , (req,res)=>{
+  res.json({"location": " \\uploads\\"+ req.file.originalname});
+} );
 // *=================================//
 // *           Login Route           //
 // *=================================//

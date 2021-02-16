@@ -1,70 +1,101 @@
-<%- include ../partials/header %> <%- include ../partials/menu %>
+<%- include ../partials/header %>
+	<%- include ../partials/menu %>
 
 
-<section class="breadcrumb-area" style="background-image:url(/images/background/news.jpg);">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="breadcrumbs text-center">
-					<h1>New Blog Post</h1>
+		<section class="breadcrumb-area" style="background-image:url(/images/background/news.jpg);">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="breadcrumbs text-center">
+							<h1>New Blog Post</h1>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-</section>
+		</section>
 
-<div class="account_page">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-offset-2 col-offset-md-2 col-offset-sm-2 col-lg-8 col-md-8 col-sm-6 col-xs-12 register_form">
-				<div class="theme-title">
-					<h2>Add New Post</h2>
-				</div>
-				<form method="post" action="/blog">
-					<div class="row">
-						<div class="col-sm-12 col-xs-12">
-							<div class="form_group">
-								<label>Heading</label>
-								<div class="input_group">
-									<input name="post[heading]" id="name" type="text" placeholder="Heading*">
-									<i class="fa fa-user" aria-hidden="true"></i>
-								</div> <!-- End of .input_group -->
-							</div> <!-- End of .form_group -->
-							<div class="form_group">
-								<label>Image Link</label>
-								<div class="input_group">
-									<input name="post[image]" id="mail" type="file" placeholder="Image">
-									<i class="fa fa-link" aria-hidden="true"></i>
-								</div> <!-- End of .input_group -->
-							</div> <!-- End of .form_group -->
-							<div class="form_group">
-								<label>Seo Description</label>
-								<div class="input_group">
-									<input name="post[pageDescription]" id="mail" type="text" placeholder="Image">
-									<i class="fa fa-link" aria-hidden="true"></i>
-								</div> <!-- End of .input_group -->
-							</div> <!-- End of .form_group -->
-							<div class="form_group">
-								<label>Slug</label>
-								<div class="input_group">
-									<input name="post[slug]" id="slug" type="text" placeholder="Slug">
-									<i class="fa fa-link" aria-hidden="true"></i>
-								</div> <!-- End of .input_group -->
-							</div> <!-- End of .form_group -->
-							<div class="form_group">
-								<label>Post content</label>
-								<div class="input_group">
-									<textarea name="post[description]" id="comment" placeholder="Description" style="width: 100%;" rows="5" ></textarea>
-									
-								</div> <!-- End of .input_group -->
-							</div> <!-- End of .form_group -->
+		<div class="account_page">
+			<div class="container">
+				<div class="row">
+					<div
+						class="form col-lg-offset-2 col-offset-md-2 col-offset-sm-2 col-lg-8 col-md-8 col-sm-6 col-xs-12 register_form">
+						<div class="theme-title">
+							<h2>Add New Post</h2>
 						</div>
-					</div> <!-- End of .row -->
-					<button class="color1_bg tran3s">Save Post</button>
-				</form>
-			</div> <!-- End of .register_form -->
-		</div> <!-- End of .row -->
-	</div> <!-- End of .container -->
-</div> <!-- End of .account_page -->
+						<div class="row">
+							<div class="col-sm-12 col-xs-12">
+								<form method="post" enctype="multipart/form-data" id="newPost">
+									<div class="form_group">
+										<label>Heading</label>
+										<div class="input_group">
+											<input name="post[heading]" id="name" type="text" placeholder="Heading*">
+											<i class="fa fa-user" aria-hidden="true"></i>
+										</div> <!-- End of .input_group -->
+									</div> <!-- End of .form_group -->
+									<div class="form_group">
+										<label>Image Link</label>
+										<div class="input_group">
+											<input name="postImg"  type="file" placeholder="Image">
+											<i class="fa fa-link" aria-hidden="true"></i>
+										</div> <!-- End of .input_group -->
+									</div> <!-- End of .form_group -->
+									<div class="form_group">
+										<label>Seo Description</label>
+										<div class="input_group">
+											<input name="post[pageDescription]" type="text"
+												placeholder="Image">
+											<i class="fa fa-link" aria-hidden="true"></i>
+										</div> <!-- End of .input_group -->
+									</div> <!-- End of .form_group -->
+									<div class="form_group">
+										<label>Slug</label>
+										<div class="input_group">
+											<input name="post[slug]" id="slug" type="text" placeholder="Slug">
+											<i class="fa fa-link" aria-hidden="true"></i>
+										</div> <!-- End of .input_group -->
+									</div> <!-- End of .form_group -->
 
-<%- include ../partials/footer %>
+								</form>
+								<div class="form_group">
+									<label>Post content</label>
+									<div>
+										<textarea name="post[description]" id="postContent" placeholder="Description"
+											style="width: 100%;" rows="5"></textarea>
+
+									</div> <!-- End of .input_group -->
+								</div> <!-- End of .form_group -->
+								<button class="color1_bg tran3s" id="savepost">Save Post</button>
+							</div>
+						</div> <!-- End of .row -->
+					</div> <!-- End of .register_form -->
+				</div> <!-- End of .row -->
+			</div> <!-- End of .container -->
+		</div> <!-- End of .account_page -->
+
+		<%- include ../partials/footer %>
+			<script type="application/javascript" src="/tinymce/tinymce.min.js"></script>
+			<!-- Script element sourcing the TinyMCE configuration -->
+			<script type="application/javascript" src="/js/my-tinymce-config.js"></script>
+			<script>
+				$(document).ready(function () {
+					$("#savepost").click(function (event) {
+						event.preventDefault();
+						var form = $('#newPost')[0];
+						var data = new FormData(form);
+						data.append("post[description]", tinyMCE.get('postContent').getContent());
+						$.ajax({
+							type: "POST",
+							enctype: 'multipart/form-data',
+							url: '/blog',
+							data: data,
+							processData: false,  // Important!
+							contentType: false,
+							cache: false
+						}).then(function (addedBlog) {
+							alert("Your Data has been Saved");
+						}).catch((err) => {
+								alert(err.responseText);
+							})
+					});
+				});
+			</script>

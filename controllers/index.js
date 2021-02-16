@@ -2,26 +2,38 @@ const path = require("path");
 const TopSelling = require("../models/topSelling.js");
 const Post = require("../models/posts.js");
 const User = require("../models/users.js");
-
+const description = require("../seo/seo")
 module.exports = {
 
   async Index(req, res, next) {
     Post.find({}).sort({date:-1}).limit(3).exec( function (err, returnedposts) {
       if(err){
       console.log(err);
-      res.send("not connected to database")
+      res.send("not connected to database");
       }else{
         TopSelling.find({}).sort({date:-1}).limit(6).exec( function (err, top) {
           if(err){
           console.log(err);
-          res.send("not connected to database")
+          res.send("not connected to database");
           }else{
-            res.render('index' , { post: returnedposts , topSelling: top,  page_name: "home" } );
+            res.render('index' , { post: returnedposts , pageDescription:description.home, topSelling: top,  page_name: "home" } );
           }
         });
       }
     });
-  },  
+  }, 
+  async files(req, res, next){
+    const images = fs.readdirSync('uploads');
+    console.log(images);
+    let sorted =[];
+    for (let item of images){
+      if(item.split('.').pop() ==='png' || item.split('.').pop() ==='jpg' ||item.split('.').pop() ==='jpeg' ||item.split('.').pop() ==='svg' ||item.split('.').pop() ==='gif'){
+        sorted.push ({"location": "/uploads/"+ item});
+      }
+    }
+    console.log(JSON.stringify(sorted));
+    res.send(sorted);
+  },
   async topSelling(req, res){
     console.log(req.file);
     let obj = { 
@@ -30,9 +42,8 @@ module.exports = {
       link: req.body.topSelling.link, 
       cartLink: req.body.topSelling.cartLink, 
       productImg:req.file.path
-  } 
-    TopSelling.create(obj
-      , function (err, posts) {
+  } ;
+    TopSelling.create(obj, function (err, posts) {
       if (err) {
         res.send({err});
       } else {
@@ -48,15 +59,15 @@ module.exports = {
       link: req.body.topSelling.link, 
       cartLink: req.body.topSelling.cartLink, 
       productImg: req.file.path
-  } 
+  };
     TopSelling.findOneAndUpdate({ _id: req.params.id }, obj, (err, data) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(data)
+        console.log(data);
         res.redirect("/");
       }
-    })
+    });
   },
   async deleteTopSelling(req, res){
     TopSelling.findOneAndDelete({_id:req.params.id}, function (err, posts) {
@@ -101,7 +112,7 @@ module.exports = {
               return res.render("auth/register", { page_name : "register"});
             } else {
               passport.authenticate("local")(req, res, () => {
-                res.redirect("/blog")
+                res.redirect("/blog");
               });
             }
           })

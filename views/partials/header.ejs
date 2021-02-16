@@ -1,56 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
+  <% let pageDescription %>
+  <!-- FarmersCity -->
 
-<!-- FarmersCity -->
+  <head>
+    <meta charset="UTF-8" />
+    <!-- For IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<head>
-	<meta charset="UTF-8">
-	<!-- For IE -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>farmerscity</title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>farmerscity</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/images/fav-icon/apple-icon-57x57.png"
+    />
+    <% if(typeof(pageDescription)=='null' ){ %>
+    <meta name="description" content=" <%= pageDescription %> " />
+    <% } else{ %>
+    <meta name="description" content=" description " />
+    <% } %>
 
-	<link rel="apple-touch-icon" sizes="57x57" href="/images/fav-icon/apple-icon-57x57.png">
+    <style>
+      /*________________Preloader_______________ */
 
+      #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        z-index: 999999999;
+        overflow: hidden;
+      }
 
+      #loader-wrapper #loader {
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
 
+      #loader-wrapper #loader {
+        color: #7fb401;
+        -webkit-animation: color-bubble 2s linear 0s infinite;
+        animation: color-bubble 2s linear 0s infinite;
+      }
 
+      #loader-wrapper #loader:after,
+      #loader-wrapper #loader:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 100%;
+        box-shadow: 0 0 0 3px;
+        -webkit-animation: spinner-bubble 1.3s linear 0s infinite;
+        animation: spinner-bubble 1.3s linear 0s infinite;
+        margin: auto;
+        width: 10px;
+        height: 10px;
+        opacity: 0;
+      }
 
+      #loader-wrapper #loader:before {
+        -webkit-animation: spinner-bubble 1.3s linear 2s infinite;
+        animation: spinner-bubble 1.3s linear 2s infinite;
+      }
 
-	<link rel="stylesheet" defer type="text/css" href="/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
+      @-webkit-keyframes spinner-bubble {
+        from {
+          width: 10px;
+          height: 10px;
+          opacity: 0.8;
+        }
 
-	<!-- Facebook Pixel Code -->
-	<script>
-		!function (f, b, e, v, n, t, s) {
-			if (f.fbq) return; n = f.fbq = function () {
-				n.callMethod ?
-				n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-			};
-			if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-			n.queue = []; t = b.createElement(e); t.async = !0;
-			t.src = v; s = b.getElementsByTagName(e)[0];
-			s.parentNode.insertBefore(t, s)
-		}(window, document, 'script',
-			'https://connect.facebook.net/en_US/fbevents.js');
-		fbq('init', '2213889098660233');
-		fbq('track', 'PageView');
-	</script>
-	<noscript>
-		<img height="1" width="1" src="https://www.facebook.com/tr?id=2213889098660233&ev=PageView&noscript=1" />
-	</noscript>
-	<!-- End Facebook Pixel Code -->
-	<!-- Fixing Internet Explorer ______________________________________-->
+        to {
+          width: 80px;
+          height: 80px;
+          opacity: 0;
+        }
+      }
 
-	<!--[if lt IE 9]>
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			
-			<script src="vendor/html5shiv.js"></script>
-		<![endif]-->
-</head>
+      @keyframes spinner-bubble {
+        from {
+          width: 10px;
+          height: 10px;
+          opacity: 0.8;
+        }
 
+        to {
+          width: 80px;
+          height: 80px;
+          opacity: 0;
+        }
+      }
+    </style>
 
+    <link
+      rel="preload"
+      type="text/css"
+      href="/css/style.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      type="text/css"
+      href="/css/responsive.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <script src="/js/lazysizes.min.js" async></script>
+    <!-- Images End -->
+    <!-- Facebook Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "2213889098660233");
+      fbq("track", "PageView");
+    </script>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        src="https://www.facebook.com/tr?id=2213889098660233&ev=PageView&noscript=1"
+      />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+    <!-- Fixing Internet Explorer ______________________________________-->
 
-<body>
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
+      <script src="vendor/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body></body>
+</html>
