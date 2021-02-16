@@ -10,8 +10,13 @@ const storage = multer.diskStorage({
 		// console.log(file);
 		cb(null, "public/uploads");
 	},
-	filename: (req, file, cb) => {
-		cb(null, file.originalname);
+		filename: function (req, file, cb) {
+			console.log(file);
+			if (fs.existsSync(path.join("public/uploads",file.originalname))) {
+				cb(null, file.originalname+"(1)");
+			}else{
+				cb(null, file.originalname);
+			}
 	}
 });
 const upload = multer({ storage: storage });
