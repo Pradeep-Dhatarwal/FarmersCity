@@ -24,12 +24,12 @@ postController = {
     res.render("blog/new", { page_name: "blog" });
   },
   async createPost(req, res) { 
-    let post = req.sanitize(req.body.post);
+    let post = req.body.post;
     console.log(post);
     post.author = { id: req.user._id, username: req.user.username };
     console.log(post);
     if (req.file) {
-      post.image = req.file.path;
+      post.image = path.join("/uploads/", req.file.originalname);
     }
 
     Post.create(post, function (err, posts) {
@@ -63,14 +63,14 @@ postController = {
 
   },
   async updatePost(req, res) {
+    console.log(req.body);
+    console.log(req.body.post);
+    
     let post = req.body;
     post.author = { id: req.user._id, username: req.user.username };
     if (req.file) {
       post.image = path.join('/uploads/' + req.file.originalname);
     }
-    post.description = req.sanitize(post.description);
-    post.heading = req.sanitize(post.heading);
-    post.pageDescription = req.sanitize(post.pageDescription);
     Post.findOneAndUpdate(
       { myslug: req.params.slug },
       post,
