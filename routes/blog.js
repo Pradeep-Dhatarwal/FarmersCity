@@ -5,6 +5,8 @@ const router = express.Router({ mergeParams: true });
 const User = require("../models/users.js");
 const Post = require("../models/posts.js");
 const multer = require('multer');
+const fs  = require("fs")
+const path  = require("path")
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
 		// console.log(file);
