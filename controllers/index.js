@@ -2,7 +2,8 @@ const path = require("path");
 const TopSelling = require("../models/topSelling.js");
 const Post = require("../models/posts.js");
 const User = require("../models/users.js");
-const description = require("../seo/seo")
+const description = require("../seo/seo");
+const fs = require("fs");
 module.exports = {
 
   async Index(req, res, next) {
@@ -23,12 +24,12 @@ module.exports = {
     });
   }, 
   async files(req, res, next){
-    const images = fs.readdirSync('uploads');
+    const images = fs.readdirSync('public/uploads');
     console.log(images);
     let sorted =[];
     for (let item of images){
       if(item.split('.').pop() ==='png' || item.split('.').pop() ==='jpg' ||item.split('.').pop() ==='jpeg' ||item.split('.').pop() ==='svg' ||item.split('.').pop() ==='gif'){
-        sorted.push ({"location": "/uploads/"+ item});
+        sorted.push ({"title":item, "value": "/uploads/"+ item });
       }
     }
     console.log(JSON.stringify(sorted));

@@ -66,7 +66,7 @@ postController = {
     console.log(req.body);
     console.log(req.body.post);
     
-    let post = req.body;
+    let post = req.body.post;
     post.author = { id: req.user._id, username: req.user.username };
     if (req.file) {
       post.image = path.join('/uploads/' + req.file.originalname);

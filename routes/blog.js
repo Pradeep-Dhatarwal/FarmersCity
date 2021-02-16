@@ -45,12 +45,12 @@ router.get("/:slug", middleware.asyncErrorHandler(postController.showPost));
 //*=================================//
 //*            Edit route           checkPostOwnership //
 //*=================================//
-router.get("/:slug/edit", middleware.isLoggedIn(),  middleware.asyncErrorHandler(postController.editPost));
+router.get("/:slug/edit",   middleware.asyncErrorHandler(postController.editPost));
 
 //*=================================//
 //*          update route           //
 //*=================================//
-router.put("/:slug", middleware.isLoggedIn(), upload.single('postImg'), middleware.asyncErrorHandler(postController.updatePost));
+router.put("/:slug",  upload.single('postImg'), middleware.asyncErrorHandler(postController.updatePost));
 
 //*=================================//
 //*          delete route           //

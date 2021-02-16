@@ -7,7 +7,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="breadcrumbs text-center">
-							<h1>New Blog Post</h1>
+							<h1>Edit Blog Post</h1>
 						</div>
 					</div>
 				</div>
@@ -107,7 +107,7 @@
 							cache: false
 						}).then(function (addedBlog) {
 							alert("Your Data has been Saved");
-						}).catch((err) => {
+						}).fail((err) => {
 								alert(err.responseText);
 							})
 					});
