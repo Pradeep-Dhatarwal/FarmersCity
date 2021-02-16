@@ -11,14 +11,14 @@ const mongoose = require("mongoose");
 const multer = require('multer');
 const flash = require("connect-flash");
 const expressSanitizer = require('express-sanitizer');
-const compression = require('compression');
+// const compression = require('compression');
 const app = express();
 if (process.env.NODE_ENV !== "production") {
   const logger = require('morgan');
   require('dotenv').config();
   app.use(logger('dev'));
 }
-app.use(compression());
+// app.use(compression());
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (err) => {
   if (!err) {
