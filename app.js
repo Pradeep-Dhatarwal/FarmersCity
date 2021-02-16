@@ -28,7 +28,6 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useCreateIndex:
   }
 });
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -39,15 +38,7 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 app.use(expressSanitizer());
-let storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/images');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-const upload = multer({ storage: storage }).single("image");
+
 //*=================================//
 //*       Import Models             //
 //*=================================//

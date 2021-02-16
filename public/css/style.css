@@ -128,7 +128,7 @@ ul {list-style-type: none;}
 p {font-family: 'Open Sans', sans-serif; font-size: 14px; color:#9c9c9c; line-height: 26px; font-weight: 400;}
 a {text-decoration: none; display: inline-block; color:#9c9c9c; outline: none;}
 a:hover,a:focus,a:visited {text-decoration: none; outline: none;}
-img {min-width: 100%;display: block;}
+img {/* min-width: 100%; */display: block;}
 
 button {border:none; outline:none; box-shadow: none; display: block; padding: 0; background: transparent;}
 input,textarea {display: block;outline: none;box-shadow: none;-webkit-transition: all 0.3s ease-in-out;transition: all 0.3s ease-in-out;}

@@ -64,7 +64,7 @@ router.post("/register", asyncErrorHandler(Register));
 // *=================================//
 router.get('/files', asyncErrorHandler(files));
 router.post('/upload',upload.single("file") , (req,res)=>{
-  res.json({"location": " \\uploads\\"+ req.file.originalname});
+  res.json({"location": "/uploads/"+ req.file.originalname});
 } );
 // *=================================//
 // *           Login Route           //
